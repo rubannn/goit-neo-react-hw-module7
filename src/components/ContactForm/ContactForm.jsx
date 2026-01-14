@@ -1,12 +1,11 @@
 import { useId } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { nanoid } from "nanoid";
 import { object, string } from "yup";
 
 import styles from "./ContactForm.module.css";
 
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
+import { addContact } from "../../redux/contactsOps";
 
 const contactSchema = object({
     name: string()
@@ -29,7 +28,6 @@ export default function ContactForm() {
     const onSubmitHandler = (values, actions) => {
         dispath(
             addContact({
-                id: nanoid(),
                 name: values.name,
                 number: values.number
             })
